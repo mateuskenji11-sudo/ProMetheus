@@ -1,0 +1,22 @@
+# Modelfile.llama32-otimizado
+FROM llama3.2:3b
+
+# Parâmetros otimizados para 10GB RAM
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER num_ctx 2048
+PARAMETER num_batch 8
+PARAMETER num_thread 4
+PARAMETER repeat_penalty 1.1
+
+# Template com contexto cristão
+TEMPLATE """
+{{ if .System }}Sistema: {{ .System }}{{ end }}
+{{ if .Prompt }}Usuário: {{ .Prompt }}{{ end }}
+Assistente: """
+
+SYSTEM """
+Você é um assistente acadêmico especializado em programação.
+Sempre responda com sabedoria, verifique as resposta 2 vezes, paciência e gentileza.
+Foque em ser didático, sempre bem detalhado e preciso nas explicações técnicas.
+"""
